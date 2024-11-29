@@ -24,12 +24,27 @@ public class UserService {
         this.userRepository.deleteById(id);
     }
 
-    public Optional<User> handleFetchUserById(long id) {
-        return this.userRepository.findById(id);
+    public User handleFetchUserById(long id) {
+        Optional<User> user = this.userRepository.findById(id);
+        if (user.isPresent()) {
+            return user.get();
+        }
+        return null;
     }
 
     public List<User> handleFindAllUser() {
         return this.userRepository.findAll();
+    }
+
+    public User handleUpdateUser(User user) {
+        User currentUser = this.handleFetchUserById(user.getId());
+        if (currentUser != null) {
+            currentUser.setEmail(user.getEmail());
+            currentUser.setName(user.getName());
+            currentUser.setPassword(user.getPassword());
+            return this.userRepository.save(currentUser);
+        }
+        return null;
     }
 
 }

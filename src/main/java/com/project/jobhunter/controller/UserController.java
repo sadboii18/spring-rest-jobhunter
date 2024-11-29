@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 public class UserController {
@@ -38,8 +39,7 @@ public class UserController {
 
     @GetMapping("/user/fetch/{id}")
     public User fetchUserById(@PathVariable("id") long id) {
-        User user = new User();
-        user = this.userService.handleFetchUserById(id).get();
+        User user = this.userService.handleFetchUserById(id);
         return user;
     }
 
@@ -48,6 +48,12 @@ public class UserController {
         List<User> userList = new ArrayList<>();
         userList = this.userService.handleFindAllUser();
         return userList;
+    }
+
+    @PutMapping("/user/update")
+    public User updateUser(@RequestBody User user) {
+        User updateUser = this.userService.handleUpdateUser(user);
+        return updateUser;
     }
 
 }
