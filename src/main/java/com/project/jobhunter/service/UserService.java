@@ -1,5 +1,8 @@
 package com.project.jobhunter.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.project.jobhunter.domain.User;
@@ -19,6 +22,14 @@ public class UserService {
 
     public void handleDeleteUser(long id) {
         this.userRepository.deleteById(id);
+    }
+
+    public Optional<User> handleFetchUserById(long id) {
+        return this.userRepository.findById(id);
+    }
+
+    public List<User> handleFindAllUser() {
+        return this.userRepository.findAll();
     }
 
 }
