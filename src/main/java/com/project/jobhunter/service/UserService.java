@@ -42,9 +42,9 @@ public class UserService {
             currentUser.setEmail(user.getEmail());
             currentUser.setName(user.getName());
             currentUser.setPassword(user.getPassword());
-            return this.userRepository.save(currentUser);
+            this.userRepository.save(currentUser);
         }
-        return null;
+        return currentUser;
     }
 
 }
