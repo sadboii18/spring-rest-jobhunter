@@ -47,7 +47,4 @@ public class UserService {
         return currentUser;
     }
 
-    public void handleTest() {
-
-    }
 }
