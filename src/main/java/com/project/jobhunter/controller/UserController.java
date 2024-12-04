@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.jobhunter.domain.User;
 import com.project.jobhunter.service.UserService;
-import com.project.jobhunter.service.exception.IdInvalidException;
+import com.project.jobhunter.util.exception.IdInvalidException;
 
 import java.util.ArrayList;
 import java.util.List;
