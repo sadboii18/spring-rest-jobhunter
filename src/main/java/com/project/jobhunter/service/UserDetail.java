@@ -20,6 +20,10 @@ public class UserDetail implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         com.project.jobhunter.domain.User user = this.userService.handleFindUserByEmail(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("Username/Password khong hop le");
+        }
+
         return new User(
                 user.getEmail(),
                 user.getPassword(),
