@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.jobhunter.domain.dto.LoginDTO;
@@ -33,6 +34,7 @@ public class AuthController {
 
         // Xac thuc nguoi dung => can viet ham loadUserByUsername
         Authentication auth = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         String accessToken = this.securityUtil.CreateToken(auth);
         ResLoginDTO res = new ResLoginDTO();
         res.setAccessToken(accessToken);
